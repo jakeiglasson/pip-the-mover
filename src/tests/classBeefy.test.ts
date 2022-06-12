@@ -33,8 +33,8 @@ describe("Instance Of Class Beefy:", () => {
 		const validTestCoords: BeefyProps = { x: 1, y: 1, f: "NORTH" };
 
 		describe("report()", () => {
-			beefy = new Beefy();
 			test("returns undefined when isPlaced === false", () => {
+				beefy = new Beefy();
 				expect(beefy.report()).toStrictEqual(undefined);
 			});
 			test("returns the values x,y,f of instance Beefy as {x,y,f}. Only if isPlaced === true", () => {
@@ -77,6 +77,11 @@ describe("Instance Of Class Beefy:", () => {
 		});
 
 		describe("move(), facing (f):", () => {
+			test("If isPlaced === false, move() does nothing", () => {
+				beefy = new Beefy();
+				beefy.move();
+				expect(beefy.report()).toStrictEqual(undefined);
+			});
 			describe("(f) NORTH:", () => {
 				test("Property y of Beefy instance is increased by 1", () => {
 					beefy.place({ x: 0, y: 0, f: "NORTH" });
@@ -128,6 +133,11 @@ describe("Instance Of Class Beefy:", () => {
 		});
 
 		describe("left()", () => {
+			test("If isPlaced === false, left() does nothing", () => {
+				beefy = new Beefy();
+				beefy.left();
+				expect(beefy.report()).toStrictEqual(undefined);
+			});
 			test("cycles through the cardinal directions counter-clockwise", () => {
 				beefy.place(validTestCoords);
 				beefy.left();
@@ -142,6 +152,11 @@ describe("Instance Of Class Beefy:", () => {
 		});
 
 		describe("right()", () => {
+			test("If isPlaced === false, right() does nothing", () => {
+				beefy = new Beefy();
+				beefy.right();
+				expect(beefy.report()).toStrictEqual(undefined);
+			});
 			test("cycles through the cardinal directions clockwise", () => {
 				beefy.place(validTestCoords);
 				beefy.right();
