@@ -19,5 +19,7 @@ export default class Beefy {
 
 	right() {}
 
-	report() {}
+	report() {
+		return { x: this.x, y: this.y, f: this.f };
+	}
 }
