@@ -61,9 +61,33 @@ export default class Beefy {
 		}
 	}
 
-	left() {}
+  // cw - clockWise
+	private changeCardinalDirection = (cw: boolean) => {
+		switch (this.f) {
+			case "NORTH":
+				this.f = cw ? "EAST" : "WEST";
+				break;
+			case "WEST":
+				this.f = cw ? "NORTH" : "SOUTH";
+				break;
+			case "SOUTH":
+				this.f = cw ? "WEST" : "EAST";
+				break;
+			case "EAST":
+				this.f = cw ? "SOUTH" : "NORTH";
+				break;
+			default:
+				break;
+		}
+	};
 
-	right() {}
+  left() {
+    this.changeCardinalDirection(false)
+  }
+
+  right() {
+    this.changeCardinalDirection(true)
+  }
 
 	report() {
 		if (this.isPlaced) {

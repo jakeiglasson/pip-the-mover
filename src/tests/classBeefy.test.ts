@@ -30,7 +30,7 @@ describe("Instance Of Class Beefy:", () => {
 	});
 
 	describe("Defined Function:", () => {
-		const validTestCoords: BeefyProps = { x: 1, y: 1, f: "EAST" };
+		const validTestCoords: BeefyProps = { x: 1, y: 1, f: "NORTH" };
 
 		describe("report()", () => {
 			beefy = new Beefy();
@@ -124,6 +124,34 @@ describe("Instance Of Class Beefy:", () => {
 					beefy.move();
 					expect(beefy.report()).toStrictEqual({ x: 0, y: 0, f: "WEST" });
 				});
+			});
+		});
+
+		describe("left()", () => {
+			test("cycles through the cardinal directions counter-clockwise", () => {
+				beefy.place(validTestCoords);
+				beefy.left();
+				expect(beefy.report()).toStrictEqual({ ...validTestCoords, f: "WEST" });
+				beefy.left();
+				expect(beefy.report()).toStrictEqual({ ...validTestCoords, f: "SOUTH" });
+				beefy.left();
+				expect(beefy.report()).toStrictEqual({ ...validTestCoords, f: "EAST" });
+				beefy.left();
+				expect(beefy.report()).toStrictEqual({ ...validTestCoords, f: "NORTH" });
+			});
+		});
+
+		describe("right()", () => {
+			test("cycles through the cardinal directions clockwise", () => {
+				beefy.place(validTestCoords);
+				beefy.right();
+				expect(beefy.report()).toStrictEqual({ ...validTestCoords, f: "EAST" });
+				beefy.right();
+				expect(beefy.report()).toStrictEqual({ ...validTestCoords, f: "SOUTH" });
+				beefy.right();
+				expect(beefy.report()).toStrictEqual({ ...validTestCoords, f: "WEST" });
+				beefy.right();
+				expect(beefy.report()).toStrictEqual({ ...validTestCoords, f: "NORTH" });
 			});
 		});
 	});
