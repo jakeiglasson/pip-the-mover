@@ -1,0 +1,23 @@
+{
+	"name": "beefy-the-robot",
+	"version": "1.0.0",
+	"description": "",
+	"main": "bin/index.ts",
+	"scripts": {
+		"beefy": "node lib/index.js",
+		"dev-beefy": "npx tsc && npm run beefy",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "Jake Glasson (https://jakeiglasson.com)",
+	"license": "MIT",
+	"dependencies": {
+		"@types/prompt-sync": "^4.1.1",
+		"prompt-sync": "^4.2.0"
+	},
+	"devDependencies": {
+		"@types/node": "^17.0.42",
+		"jest": "^28.1.1",
+		"typescript": "^4.7.3"
+	}
+}

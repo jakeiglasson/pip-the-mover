@@ -1,0 +1,1 @@
+export type ValidCommands = "PLACE" | "MOVE" | "REPORT" | "LEFT" | "RIGHT" | 'EXIT' | 'HELP';
