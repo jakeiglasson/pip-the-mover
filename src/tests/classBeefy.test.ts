@@ -170,4 +170,34 @@ describe("Instance Of Class Beefy:", () => {
 			});
 		});
 	});
+
+	describe("Multi Function Tests", () => {
+		test("A: PLACE 0,0,NORTH => MOVE => REPORT | Expected Output: 0,1,NORTH", () => {
+			const initialPosition = { x: 0, y: 0, f: "NORTH" };
+			const expectedReport = { x: 0, y: 1, f: "NORTH" };
+			beefy = new Beefy();
+			beefy.place(initialPosition);
+			beefy.move();
+			expect(beefy.report()).toStrictEqual(expectedReport);
+		});
+		test("B: PLACE 0,0,NORTH => LEFT => REPORT | Expected Output: 0,0,WEST", () => {
+			const initialPosition = { x: 0, y: 0, f: "NORTH" };
+			const expectedReport = { x: 0, y: 0, f: "WEST" };
+			beefy = new Beefy();
+			beefy.place(initialPosition);
+			beefy.left();
+			expect(beefy.report()).toStrictEqual(expectedReport);
+		});
+		test("C: PLACE 1,2,EAST => MOVE => MOVE => LEFT => MOVE => REPORT | Expected Output: 3,3,NORTH", () => {
+			const initialPosition = { x: 1, y: 2, f: "EAST" };
+			const expectedReport = { x: 3, y: 3, f: "NORTH" };
+			beefy = new Beefy();
+			beefy.place(initialPosition);
+			beefy.move();
+			beefy.move();
+			beefy.left();
+			beefy.move();
+			expect(beefy.report()).toStrictEqual(expectedReport);
+		});
+	});
 });
