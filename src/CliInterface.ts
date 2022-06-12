@@ -1,24 +1,45 @@
 // const prompt = require("prompt-sync")();
 import PromptSync from "prompt-sync";
-import { ValidCommands } from "./types";
+import Beefy, { BeefyProps } from "./Beefy";
+import { beefyValidFacingDirections, ValidCommands } from "./types";
 
 const prompt = PromptSync();
 
-export const CliInterface = (): boolean => {
-	const commandString = prompt("command: ").toUpperCase().split(" ");
+export const CliInterface = (beefy: Beefy): boolean => {
+	const commandString = prompt("> ").toUpperCase().split(" ");
+	const [command, parameters] = [commandString[0] as ValidCommands, commandString.slice(1)];
 
-	const command = commandString[0] as ValidCommands;
+	let placeCoords: BeefyProps;
+	if (parameters[0]) {
+		let x;
+		let y;
+		let f;
+		[x, y, f] = parameters[0].split(",");
+		x = Number(x);
+		y = Number(y);
+		placeCoords = { x, y, f: f as beefyValidFacingDirections };
+	}
 
 	switch (command) {
 		case "PLACE":
+			if (placeCoords) {
+				beefy.place(placeCoords);
+			}
 			break;
 		case "LEFT":
+			beefy.right();
 			break;
 		case "RIGHT":
+			beefy.left();
 			break;
 		case "MOVE":
+			beefy.move();
 			break;
 		case "REPORT":
+			const report = beefy.report();
+			if (report) {
+				console.log("\nreport:", report, "\n");
+			}
 			break;
 		case "HELP":
 			console.log("\nPLACE X,Y,F: e.g. PLACE 0,0,NORTH ");

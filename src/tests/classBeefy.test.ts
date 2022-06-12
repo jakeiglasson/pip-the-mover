@@ -1,5 +1,5 @@
-import Beefy from "../Beefy";
-import { BeefyProps } from "../types";
+import Beefy, { BeefyProps } from "../Beefy";
+
 let beefy = new Beefy();
 
 describe("Instance Of Class Beefy:", () => {

@@ -1,5 +1,10 @@
-import { BeefyProps } from "./types";
+import { beefyValidFacingDirections } from "./types";
 
+export type BeefyProps = {
+	x: number;
+	y: number;
+	f: string;
+};
 export default class Beefy {
 	x: BeefyProps["x"];
 	y: BeefyProps["y"];
@@ -17,13 +22,13 @@ export default class Beefy {
 		return Number.isInteger(n) && 0 <= n && n < 5;
 	}
 
-	private validFacingPosition(f: BeefyProps["f"]) {
+	private validFacingPosition(f: beefyValidFacingDirections) {
 		return f === "EAST" || f === "NORTH" || f === "SOUTH" || f === "WEST";
 	}
 
 	place(position: BeefyProps) {
 		const { x, y, f } = position;
-		if (this.validPositionCoord(x) && this.validPositionCoord(y) && this.validFacingPosition(f)) {
+		if (this.validPositionCoord(x) && this.validPositionCoord(y) && this.validFacingPosition(f as beefyValidFacingDirections)) {
 			if (!this.isPlaced) {
 				this.isPlaced = true;
 			}
@@ -61,7 +66,7 @@ export default class Beefy {
 		}
 	}
 
-  // cw - clockWise
+	// cw - clockWise
 	private changeCardinalDirection = (cw: boolean) => {
 		switch (this.f) {
 			case "NORTH":
@@ -81,13 +86,13 @@ export default class Beefy {
 		}
 	};
 
-  left() {
-    this.changeCardinalDirection(false)
-  }
+	left() {
+		this.changeCardinalDirection(false);
+	}
 
-  right() {
-    this.changeCardinalDirection(true)
-  }
+	right() {
+		this.changeCardinalDirection(true);
+	}
 
 	report() {
 		if (this.isPlaced) {
