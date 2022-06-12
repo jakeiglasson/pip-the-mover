@@ -33,7 +33,23 @@ export default class Beefy {
 		}
 	}
 
-	move() {}
+	move() {
+		switch (this.f) {
+			case "NORTH":
+				if (this.y < 4) {
+					this.y += 1;
+				}
+				break;
+			case "SOUTH":
+				if (this.y > 0) {
+					this.y -= 1;
+				}
+				break;
+
+			default:
+				break;
+		}
+	}
 
 	left() {}
 

@@ -44,14 +44,14 @@ describe("Instance Of Class Beefy:", () => {
 		});
 
 		describe("place()", () => {
-			test("Modifies the properties x,y,f of instance Beefy if given object {x,y,f}. For new instances: isPlaced is set to true", () => {
+			test("Modifies the properties x,y,f of instance Beefy if given object {x,y,f}. For new instances: sets isPlaced to true", () => {
 				beefy = new Beefy();
 				beefy.place(validTestCoords);
 				expect(beefy.report()).toStrictEqual(validTestCoords);
 				expect(beefy.isPlaced).toStrictEqual(true);
 			});
 
-			describe("Valid Inputs Only (Invalid Inputs Don't Change Values)", () => {
+			describe("- Valid Inputs Only (Invalid Inputs Don't Change Values):", () => {
 				test("x and y: int only", () => {
 					// string test
 					// @ts-ignore : ignore setting string to x for testing purposes
@@ -72,6 +72,33 @@ describe("Instance Of Class Beefy:", () => {
 					// @ts-ignore : ignore setting string to expected value for testing purposes
 					beefy.place({ x: 5, y: 3, f: "SOMEWHERE" });
 					expect(beefy.report()).toStrictEqual(validTestCoords);
+				});
+			});
+		});
+
+		describe("move(), facing (f):", () => {
+			describe("(f) NORTH:", () => {
+				test("Property y of Beefy instance is increased by 1", () => {
+					beefy.place({ x: 0, y: 0, f: "NORTH" });
+					beefy.move();
+					expect(beefy.report()).toStrictEqual({ x: 0, y: 1, f: "NORTH" });
+				});
+				test("Property y is NOT increased if y === 4", () => {
+					beefy.place({ x: 0, y: 4, f: "NORTH" });
+					beefy.move();
+					expect(beefy.report()).toStrictEqual({ x: 0, y: 4, f: "NORTH" });
+				});
+			});
+			describe("(f) SOUTH:", () => {
+				test("Property y of Beefy instance is decreased by 1", () => {
+					beefy.place({ x: 0, y: 4, f: "SOUTH" });
+					beefy.move();
+					expect(beefy.report()).toStrictEqual({ x: 0, y: 3, f: "SOUTH" });
+				});
+				test("Property y is NOT decreased if y === 0", () => {
+					beefy.place({ x: 0, y: 0, f: "SOUTH" });
+					beefy.move();
+					expect(beefy.report()).toStrictEqual({ x: 0, y: 0, f: "SOUTH" });
 				});
 			});
 		});
