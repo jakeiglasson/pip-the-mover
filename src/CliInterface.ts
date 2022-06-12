@@ -27,10 +27,10 @@ export const CliInterface = (beefy: Beefy): boolean => {
 			}
 			break;
 		case "LEFT":
-			beefy.right();
+			beefy.left();
 			break;
 		case "RIGHT":
-			beefy.left();
+			beefy.right();
 			break;
 		case "MOVE":
 			beefy.move();
