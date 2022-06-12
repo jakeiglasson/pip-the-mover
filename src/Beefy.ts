@@ -45,6 +45,16 @@ export default class Beefy {
 					this.y -= 1;
 				}
 				break;
+			case "EAST":
+				if (this.x < 4) {
+					this.x += 1;
+				}
+				break;
+			case "WEST":
+				if (this.x > 0) {
+					this.x -= 1;
+				}
+				break;
 
 			default:
 				break;

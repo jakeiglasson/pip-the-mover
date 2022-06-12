@@ -101,6 +101,30 @@ describe("Instance Of Class Beefy:", () => {
 					expect(beefy.report()).toStrictEqual({ x: 0, y: 0, f: "SOUTH" });
 				});
 			});
+			describe("(f) EAST:", () => {
+				test("Property x of Beefy instance is increased by 1", () => {
+					beefy.place({ x: 0, y: 0, f: "EAST" });
+					beefy.move();
+					expect(beefy.report()).toStrictEqual({ x: 1, y: 0, f: "EAST" });
+				});
+				test("Property x is NOT increased if x === 4", () => {
+					beefy.place({ x: 4, y: 0, f: "EAST" });
+					beefy.move();
+					expect(beefy.report()).toStrictEqual({ x: 4, y: 0, f: "EAST" });
+				});
+			});
+			describe("(f) WEST:", () => {
+				test("Property x of Beefy instance is decreased by 1", () => {
+					beefy.place({ x: 4, y: 0, f: "WEST" });
+					beefy.move();
+					expect(beefy.report()).toStrictEqual({ x: 3, y: 0, f: "WEST" });
+				});
+				test("Property x is NOT decreased if x === 0", () => {
+					beefy.place({ x: 0, y: 0, f: "WEST" });
+					beefy.move();
+					expect(beefy.report()).toStrictEqual({ x: 0, y: 0, f: "WEST" });
+				});
+			});
 		});
 	});
 });
