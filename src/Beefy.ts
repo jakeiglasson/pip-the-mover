@@ -13,11 +13,24 @@ export default class Beefy {
 		this.isPlaced = false;
 	}
 
+	private validPositionCoord(n: number) {
+		return Number.isInteger(n) && 0 <= n && n < 5;
+	}
+
+	private validFacingPosition(f: BeefyProps["f"]) {
+		return f === "EAST" || f === "NORTH" || f === "SOUTH" || f === "WEST";
+	}
+
 	place(position: BeefyProps) {
-		this.x = position.x;
-		this.y = position.y;
-		this.f = position.f;
-		this.isPlaced = true;
+		const { x, y, f } = position;
+		if (this.validPositionCoord(x) && this.validPositionCoord(y) && this.validFacingPosition(f)) {
+			if (!this.isPlaced) {
+				this.isPlaced = true;
+			}
+			this.x = position.x;
+			this.y = position.y;
+			this.f = position.f;
+		}
 	}
 
 	move() {}

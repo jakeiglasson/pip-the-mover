@@ -1,4 +1,5 @@
 import Beefy from "../Beefy";
+import { BeefyProps } from "../types";
 let beefy = new Beefy();
 
 describe("Instance Of Class Beefy:", () => {
@@ -29,22 +30,49 @@ describe("Instance Of Class Beefy:", () => {
 	});
 
 	describe("Defined Function:", () => {
+		const validTestCoords: BeefyProps = { x: 1, y: 1, f: "EAST" };
+
 		describe("report()", () => {
+			beefy = new Beefy();
 			test("returns undefined when isPlaced === false", () => {
 				expect(beefy.report()).toStrictEqual(undefined);
 			});
 			test("returns the values x,y,f of instance Beefy as {x,y,f}. Only if isPlaced === true", () => {
-				beefy.place({ x: 0, y: 4, f: "WEST" });
-				expect(beefy.report()).toStrictEqual({ x: 0, y: 4, f: "WEST" });
+				beefy.place(validTestCoords);
+				expect(beefy.report()).toStrictEqual(validTestCoords);
 			});
 		});
 
 		describe("place()", () => {
-			test("Modifies the properties x,y,f,isPlaced of instance Beefy if given object {x,y,f}", () => {
-				beefy = new Beefy(); //new instance sets isPlaced to false, should be true when place() is called
-				beefy.place({ x: 0, y: 4, f: "NORTH" });
-				expect(beefy.report()).toStrictEqual({ x: 0, y: 4, f: "NORTH" });
+			test("Modifies the properties x,y,f of instance Beefy if given object {x,y,f}. For new instances: isPlaced is set to true", () => {
+				beefy = new Beefy();
+				beefy.place(validTestCoords);
+				expect(beefy.report()).toStrictEqual(validTestCoords);
 				expect(beefy.isPlaced).toStrictEqual(true);
+			});
+
+			describe("Valid Inputs Only (Invalid Inputs Don't Change Values)", () => {
+				test("x and y: int only", () => {
+					// string test
+					// @ts-ignore : ignore setting string to x for testing purposes
+					beefy.place({ x: "a", y: 3, f: "WEST" });
+					expect(beefy.report()).toStrictEqual(validTestCoords);
+					// float test
+					beefy.place({ x: 1.5, y: 3, f: "WEST" });
+					expect(beefy.report()).toStrictEqual(validTestCoords);
+				});
+				test("x and y: not less than 0, not greater than 4", () => {
+					beefy.place({ x: -1, y: 3, f: "WEST" });
+					expect(beefy.report()).toStrictEqual(validTestCoords);
+
+					beefy.place({ x: 5, y: 3, f: "WEST" });
+					expect(beefy.report()).toStrictEqual(validTestCoords);
+				});
+				test("f: only 'NORTH' || 'SOUTH' || 'EAST' || 'WEST'", () => {
+					// @ts-ignore : ignore setting string to expected value for testing purposes
+					beefy.place({ x: 5, y: 3, f: "SOMEWHERE" });
+					expect(beefy.report()).toStrictEqual(validTestCoords);
+				});
 			});
 		});
 	});
