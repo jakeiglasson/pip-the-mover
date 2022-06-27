@@ -1,12 +1,12 @@
 {
-	"name": "beefy-the-robot",
+	"name": "pip-the-mover",
 	"version": "1.0.0",
 	"description": "",
 	"main": "bin/index.ts",
 	"scripts": {
 		"build": "npx tsc --project tsconfig.build.json",
-		"beefy": "node lib/index.js",
-		"dev-beefy": "npm run build && npm run test && npm run beefy",
+		"pip": "node lib/index.js",
+		"dev-pip": "npm run build && npm run test && npm run pip",
 		"test": "jest"
 	},
 	"keywords": [],

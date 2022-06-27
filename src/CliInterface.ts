@@ -1,15 +1,15 @@
 // const prompt = require("prompt-sync")();
 import PromptSync from "prompt-sync";
-import Beefy, { BeefyProps } from "./Beefy";
-import { beefyValidFacingDirections, ValidCommands } from "./types";
+import Pip, { PipProps } from "./Pip";
+import { pipValidFacingDirections, ValidCommands } from "./types";
 
 const prompt = PromptSync();
 
-export const CliInterface = (beefy: Beefy): boolean => {
+export const CliInterface = (pip: Pip): boolean => {
 	const commandString = prompt("> ").toUpperCase().split(" ");
 	const [command, parameters] = [commandString[0] as ValidCommands, commandString.slice(1)];
 
-	let placeCoords: BeefyProps;
+	let placeCoords: PipProps;
 	if (parameters[0]) {
 		let x;
 		let y;
@@ -17,36 +17,36 @@ export const CliInterface = (beefy: Beefy): boolean => {
 		[x, y, f] = parameters[0].split(",");
 		x = Number(x);
 		y = Number(y);
-		placeCoords = { x, y, f: f as beefyValidFacingDirections };
+		placeCoords = { x, y, f: f as pipValidFacingDirections };
 	}
 
 	switch (command) {
 		case "PLACE":
 			if (placeCoords) {
-				beefy.place(placeCoords);
+				pip.place(placeCoords);
 			}
 			break;
 		case "LEFT":
-			beefy.left();
+			pip.left();
 			break;
 		case "RIGHT":
-			beefy.right();
+			pip.right();
 			break;
 		case "MOVE":
-			beefy.move();
+			pip.move();
 			break;
 		case "REPORT":
-			const report = beefy.report();
+			const report = pip.report();
 			if (report) {
 				console.log("\nreport:", report, "\n");
 			}
 			break;
 		case "HELP":
 			console.log("\nPLACE X,Y,F: e.g. PLACE 0,0,NORTH ");
-			console.log("LEFT: change the direction (counter-clockwise) beefy is facing");
-			console.log("RIGHT: change the direction (clockwise) beefy is facing");
-			console.log("MOVE: move beefy one unit in the direction it's facing");
-			console.log("REPORT: get the X,Y,F position of beefy");
+			console.log("LEFT: change the direction (counter-clockwise) pip is facing");
+			console.log("RIGHT: change the direction (clockwise) pip is facing");
+			console.log("MOVE: move pip one unit in the direction it's facing");
+			console.log("REPORT: get the X,Y,F position of pip");
 			console.log("EXIT: close application\n");
 			break;
 		case "EXIT":

@@ -1,14 +1,14 @@
-import { beefyValidFacingDirections } from "./types";
+import { pipValidFacingDirections } from "./types";
 
-export type BeefyProps = {
+export type PipProps = {
 	x: number;
 	y: number;
 	f: string;
 };
-export default class Beefy {
-	x: BeefyProps["x"];
-	y: BeefyProps["y"];
-	f: BeefyProps["f"];
+export default class Pip {
+	x: PipProps["x"];
+	y: PipProps["y"];
+	f: PipProps["f"];
 	isPlaced: boolean;
 
 	constructor() {
@@ -22,7 +22,7 @@ export default class Beefy {
 		return Number.isInteger(n) && 0 <= n && n < 5;
 	}
 
-	private validFacingPosition(f: beefyValidFacingDirections) {
+	private validFacingPosition(f: pipValidFacingDirections) {
 		return f === "EAST" || f === "NORTH" || f === "SOUTH" || f === "WEST";
 	}
 
@@ -46,9 +46,9 @@ export default class Beefy {
 		}
 	};
 
-	place(position: BeefyProps) {
+	place(position: PipProps) {
 		const { x, y, f } = position;
-		if (this.validPositionCoord(x) && this.validPositionCoord(y) && this.validFacingPosition(f as beefyValidFacingDirections)) {
+		if (this.validPositionCoord(x) && this.validPositionCoord(y) && this.validFacingPosition(f as pipValidFacingDirections)) {
 			if (!this.isPlaced) {
 				this.isPlaced = true;
 			}

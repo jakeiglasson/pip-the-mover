@@ -1,12 +1,12 @@
 // #!/usr/bin/env node
-import Beefy from "./Beefy";
+import Pip from "./Pip";
 import { CliInterface } from "./CliInterface";
 
-console.log("~~~ Beefy The Robot ~~~");
+console.log("~~~ Pip The Mover ~~~");
 console.log("type help for a list of commands\n");
 
-const beefy = new Beefy();
+const pip = new Pip();
 let getInput = true;
 while (getInput) {
-	getInput = CliInterface(beefy);
+	getInput = CliInterface(pip);
 }
