@@ -14,22 +14,22 @@ Pip The Mover is a small nodeJS CLI application, you can place the Pip on an ima
 
 ## Setup
 
-    $ cd pip-mover
+    $ cd <project root dir>
     $ npm ci
 
 ## After Setup
 
 ### How to run the application
 
-    $ cd pip-mover
+    $ cd <project root dir>
     $ npm run pip
 
 ### How to run the tests
 
-    $ cd pip-mover
+    $ cd <project root dir>
     $ npm run test
 
 ### How to build the application
 
-    $ cd pip-mover
+    $ cd <project root dir>
     $ npm run build
